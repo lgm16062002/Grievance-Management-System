@@ -59,8 +59,8 @@ const Notifications = () => {
   const [activeTab, setActiveTab] = useState('all');
 
   const unreadCount = notificationsData.filter(n => n.unread).length;
-  const filteredNotifications = activeTab === 'unread' 
-    ? notificationsData.filter(n => n.unread) 
+  const filteredNotifications = activeTab === 'unread'
+    ? notificationsData.filter(n => n.unread)
     : notificationsData;
 
   return (
@@ -72,13 +72,13 @@ const Notifications = () => {
 
       <div className="notifications-container dashboard-card">
         <div className="notifications-tabs">
-          <button 
+          <button
             className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
             onClick={() => setActiveTab('all')}
           >
             All <span className="badge">{notificationsData.length}</span>
           </button>
-          <button 
+          <button
             className={`tab-btn ${activeTab === 'unread' ? 'active' : ''}`}
             onClick={() => setActiveTab('unread')}
           >
@@ -92,7 +92,7 @@ const Notifications = () => {
               <div className={`notification-icon-wrap ${notification.color}`}>
                 <i className={notification.icon}></i>
               </div>
-              
+
               <div className="notification-content">
                 <div className="notification-main">
                   <h3>{notification.title}</h3>

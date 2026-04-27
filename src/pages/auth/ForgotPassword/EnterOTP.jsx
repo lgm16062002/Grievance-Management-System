@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { FaCheckCircle, FaLock } from 'react-icons/fa'
 
-const otpClasses =
-  'h-10 w-10 rounded-lg border border-[#E2E8F0] bg-white text-center text-base font-semibold text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-4 focus:ring-blue-100 sm:h-12 sm:w-12 sm:rounded-xl sm:text-lg'
-
 const EnterOTP = ({
   email,
   primaryButtonClasses,
@@ -97,32 +94,30 @@ const EnterOTP = ({
 
   return (
     <>
-      <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
-        <FaLock className="h-10 w-10" />
+      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
+        <FaLock className="h-6 w-6" />
       </div>
 
-      <div className="mb-6 text-center">
-        <h2 className="text-base font-semibold text-[#0F172A]">Forgot Password</h2>
+      <div className="mb-4 text-center">
+        <h2 className="text-xl font-bold tracking-tight text-[#0F172A]">Verify Identity</h2>
+        <p className="mt-0.5 text-xs text-[#64748B]">Verify OTP sent to your email</p>
       </div>
 
       <StepIndicator />
 
-      <div className="mb-6 text-center">
-        <h3 className="text-lg font-bold text-[#0F172A]">Verify OTP</h3>
-        <p className="mt-2 text-sm text-[#64748B]">We've sent a 6-digit OTP to</p>
-        <p className="mt-1 break-all text-sm font-semibold text-[#2563EB]">{safeEmail}</p>
+      <div className="mb-4 text-center">
+        <p className="text-xs text-[#64748B]">We've sent a 6-digit OTP to</p>
+        <p className="mt-0.5 break-all text-[11px] font-semibold text-[#2563EB]">{safeEmail}</p>
       </div>
 
       {error ? (
-        <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-[#EF4444]">
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] text-[#EF4444]">
           {error}
         </div>
       ) : null}
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        <div>
-          <p className="mb-3 text-sm font-medium text-[#0F172A]">Enter the 6-digit code</p>
-          <div className="flex items-center justify-between gap-2">
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="flex items-center justify-between gap-1.5 sm:gap-2">
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -130,7 +125,7 @@ const EnterOTP = ({
               inputMode="numeric"
               maxLength="1"
               aria-label={`Reset OTP digit ${index + 1}`}
-              className={otpClasses}
+              className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white text-center text-sm font-semibold text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100 sm:h-11 sm:text-base"
               value={digit}
               onChange={(event) => handleChange(index, event.target.value)}
               onKeyDown={(event) => handleKeyDown(event, index)}
@@ -139,31 +134,31 @@ const EnterOTP = ({
               }}
             />
           ))}
-          </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-[11px]">
           <span className="text-[#64748B]">Didn't receive the code?</span>
           <button
             type="button"
-            className={textButtonClasses}
+            className="font-semibold text-[#2563EB] hover:underline disabled:opacity-50"
             disabled={secondsLeft > 0}
             onClick={() => {
               if (secondsLeft > 0) return
               setSecondsLeft(45)
             }}
           >
-            Resend OTP {secondsLeft > 0 ? `(${timeLabel})` : ''}
+            Resend {secondsLeft > 0 ? `(${timeLabel})` : ''}
           </button>
         </div>
 
-        <button type="button" className={outlineButtonClasses} onClick={onBack}>
-          Go Back
-        </button>
-
-        <button type="submit" className={primaryButtonClasses}>
-          Verify OTP
-        </button>
+        <div className="grid grid-cols-2 gap-3">
+          <button type="button" className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#475569] transition hover:bg-gray-50" onClick={onBack}>
+            Back
+          </button>
+          <button type="submit" className="h-10 w-full rounded-lg bg-[#2563EB] text-xs font-semibold text-white shadow-sm transition hover:bg-[#1D4ED8]">
+            Verify
+          </button>
+        </div>
       </form>
     </>
   )

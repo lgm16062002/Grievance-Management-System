@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import '../styles/admin/Dashboard.css';
 import {
   FiAlertTriangle,
@@ -178,6 +178,21 @@ const chartPaddingX = 28;
 const chartPaddingTop = 24;
 const chartPaddingBottom = 34;
 const maxValue = 400;
+const DASHBOARD_DATE_STORAGE_KEY = 'grievance-portal-selected-date';
+
+const formatLongDate = (value) => {
+  const date = new Date(`${value}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) {
+    return 'May 20, 2025';
+  }
+
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
 
 const getPoints = (values) =>
   values
@@ -192,6 +207,26 @@ const getPoints = (values) =>
     .join(' ');
 
 const Dashboard = () => {
+  const [selectedDate, setSelectedDate] = useState(() => {
+    if (typeof window === 'undefined') {
+      return '2025-05-20';
+    }
+
+    return window.localStorage.getItem(DASHBOARD_DATE_STORAGE_KEY) || '2025-05-20';
+  });
+  const longDate = useMemo(() => formatLongDate(selectedDate), [selectedDate]);
+
+  useEffect(() => {
+    const handleDateChange = (event) => {
+      if (event.detail?.value) {
+        setSelectedDate(event.detail.value);
+      }
+    };
+
+    window.addEventListener('grievance-dashboard-date-change', handleDateChange);
+    return () => window.removeEventListener('grievance-dashboard-date-change', handleDateChange);
+  }, []);
+
   return (
     <div className="admin-overview-page">
       <section className="admin-overview-hero">
@@ -202,7 +237,7 @@ const Dashboard = () => {
 
         <button type="button" className="admin-date-chip">
           <FiCalendar />
-          <span>May 20, 2025</span>
+          <span>{longDate}</span>
           <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
         </button>
       </section>

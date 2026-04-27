@@ -103,53 +103,50 @@ const ForgotPassword = ({
 
   return (
     <>
-      <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
-        <FaLock className="h-10 w-10" />
+      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
+        <FaLock className="h-6 w-6" />
       </div>
 
-      <div className="mb-8 text-center">
-        <h2 className="text-3xl font-bold tracking-[-0.03em] text-[#0F172A]">Forgot Password</h2>
-        <p className="mt-1 text-sm text-[#64748B]">Reset Your Password</p>
-        <p className="mt-3 text-sm text-[#64748B]">
-          Enter your registered email address and we'll send you a One Time Password (OTP).
-        </p>
+      <div className="mb-4 text-center">
+        <h2 className="text-xl font-bold tracking-tight text-[#0F172A]">Forgot Password</h2>
+        <p className="mt-0.5 text-xs text-[#64748B]">Reset your account password</p>
       </div>
 
       <StepIndicator />
 
       {error ? (
-        <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-[#EF4444]">
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] text-[#EF4444]">
           {error}
         </div>
       ) : null}
 
-      <form className="space-y-5" onSubmit={handleEmailSubmit}>
+      <form className="space-y-4" onSubmit={handleEmailSubmit}>
         <div>
-          <label htmlFor="forgot-email" className={labelClasses}>
+          <label htmlFor="forgot-email" className="mb-1 block text-xs font-medium text-[#0F172A]">
             Email
           </label>
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#94A3B8]">
-              <FaEnvelope className="h-5 w-5" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#94A3B8]">
+              <FaEnvelope className="h-4 w-4" />
             </div>
             <input
               id="forgot-email"
               type="email"
               placeholder="Enter your registered email"
-              className={inputClasses}
+              className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white px-3 pl-10 text-xs text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
         </div>
 
-        <button type="submit" className={primaryButtonClasses}>
+        <button type="submit" className="h-10 w-full rounded-lg bg-[#2563EB] text-xs font-semibold text-white shadow-sm transition hover:bg-[#1D4ED8]">
           Send OTP
         </button>
 
-        <p className="pt-2 text-center text-sm text-[#64748B]">
+        <p className="pt-1 text-center text-[11px] text-[#64748B]">
           Remember your password?{' '}
-          <button type="button" className={textButtonClasses} onClick={onBack}>
+          <button type="button" className="font-semibold text-[#2563EB] transition hover:text-[#1D4ED8]" onClick={onBack}>
             Sign In
           </button>
         </p>

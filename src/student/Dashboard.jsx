@@ -178,7 +178,7 @@ const Dashboard = () => {
       </section>
 
       <section className="dashboard-main-grid">
-        <article className="dashboard-card quick-actions-card">
+        {/* <article className="dashboard-card quick-actions-card">
           <div className="dashboard-section-head">
             <h2>Quick Actions</h2>
           </div>
@@ -197,7 +197,7 @@ const Dashboard = () => {
               </button>
             ))}
           </div>
-        </article>
+        </article> */}
 
         <article className="dashboard-card grievances-card">
           <div className="dashboard-section-head">
@@ -280,7 +280,7 @@ const Dashboard = () => {
         </article>
       </section>
 
-      <section className="dashboard-bottom-grid">
+      {/* <section className="dashboard-bottom-grid">
         <article className="dashboard-card combined-stats-card">
           <div className="combined-stats-grid">
             <div className="stats-col">
@@ -355,7 +355,7 @@ const Dashboard = () => {
             <i className="fa-solid fa-arrow-right"></i>
           </button>
         </article>
-      </section>
+      </section> */}
     </div>
   );
 };

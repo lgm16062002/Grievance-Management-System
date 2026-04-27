@@ -229,15 +229,18 @@ const Login = () => {
   }
 
   return (
-    <main className="relative h-screen overflow-hidden bg-[#F8FAFC]">
-      <img
-        src={backgroundImage}
-        alt="University campus walkway with students and greenery"
-        className="absolute  h-full w-full object-cover"
-      />
+    <main className="relative min-h-screen w-full bg-[#F8FAFC]">
+      <div className="fixed inset-0 z-0">
+        <img
+          src={backgroundImage}
+          alt="University campus walkway"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0F172A]/10 backdrop-blur-[2px]"></div>
+      </div>
 
-      <div className="relative grid h-screen grid-cols-1 lg:grid-cols-[50%_50%] xl:grid-cols-[55%_45%]">
-        <section className="relative hidden h-full lg:block">
+      <div className="relative z-10 grid min-h-screen grid-cols-1 lg:grid-cols-[50%_50%] xl:grid-cols-[55%_45%]">
+        <section className="relative hidden h-full flex-col lg:flex">
           <div className="relative flex h-full flex-col px-6 pb-6 pt-5 md:px-10 md:pb-8 md:pt-6 lg:px-12 lg:pb-8 lg:pt-6 xl:px-20 xl:pb-10 xl:pt-8">
             <div className="pt-2">
               <BrandLogo />
@@ -290,7 +293,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="flex max-w-sm items-start gap-3 rounded-2xl bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] px-4 py-4 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.55)] lg:gap-4 lg:rounded-3xl lg:px-6 lg:py-5">
+            <div className="mt-auto flex max-w-sm items-start gap-3 rounded-2xl bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] px-4 py-4 text-white shadow-[0_22px_60px_-34px_rgba(15,23,42,0.55)] lg:gap-4 lg:rounded-3xl lg:px-6 lg:py-5">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/20 ring-1 ring-white/25 lg:h-12 lg:w-12 lg:rounded-2xl">
                 <FaBuilding className="h-6 w-6 text-white lg:h-7 lg:w-7" />
               </div>
@@ -304,8 +307,8 @@ const Login = () => {
           </div>
         </section>
 
-        <section className="flex h-full items-center justify-center px-4 py-6 sm:px-6 md:px-8 lg:px-12 lg:py-0">
-          <div className="w-full max-w-[420px] rounded-2xl border border-white/60 bg-white p-6 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.25)] sm:max-w-[440px] sm:rounded-3xl sm:p-8 lg:p-10 overflow-y-auto max-h-full">
+        <section className="flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 md:px-8 lg:px-12 lg:py-0">
+          <div className="w-full max-w-[420px] rounded-2xl border border-white/60 bg-white p-6 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.25)] sm:max-w-[440px] sm:rounded-3xl sm:p-8 lg:p-10">
             {renderPanel()}
           </div>
         </section>

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AssignmentRules from './Admin/AssignmentRules.jsx';
-import CategoryManager from './Admin/CategoryManager.jsx';
-import AdminContactSupport from './Admin/ContactSupport.jsx';
-import AdminDashboard from './Admin/Dashboard.jsx';
-import AdminGrievanceDetail from './Admin/GrievanceDetail.jsx';
-import ManageGrievances from './Admin/ManageGrievances.jsx';
-import ManageUsers from './Admin/ManageUsers.jsx';
-import AdminNotifications from './Admin/Notifications.jsx';
-import AdminSettings from './Admin/Settings.jsx';
+import AssignmentRules from './admin/AssignmentRules.jsx';
+import CategoryManager from './admin/CategoryManager.jsx';
+import AdminContactSupport from './admin/ContactSupport.jsx';
+import AdminDashboard from './admin/Dashboard.jsx';
+import AdminGrievanceDetail from './admin/GrievanceDetail.jsx';
+import ManageGrievances from './admin/ManageGrievances.jsx';
+import ManageUsers from './admin/ManageUsers.jsx';
+import AdminNotifications from './admin/Notifications.jsx';
+import AdminProfile from './admin/Profile.jsx';
+import AdminSettings from './admin/Settings.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import MainLayout from './components/layouts/mainlayout';
 import { useAuth } from './context/AuthContext.jsx';
@@ -83,6 +84,7 @@ const App = () => {
             <Route path="/admin/settings" element={<AdminSettings />} />
             <Route path="/admin/contact" element={<AdminContactSupport />} />
             <Route path="/admin/grievances/:id" element={<AdminGrievanceDetail />} />
+            <Route path="/admin/profile" element={<AdminProfile />} />
           </Route>
         </Route>
       </Route>

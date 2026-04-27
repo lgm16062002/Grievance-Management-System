@@ -1,7 +1,25 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import './header.css';
+
+const DASHBOARD_DATE_STORAGE_KEY = 'grievance-portal-selected-date';
+
+const formatDisplayDate = (value) => {
+  if (!value) {
+    return 'Select date';
+  }
+
+  const date = new Date(`${value}T00:00:00`);
+
+  return Number.isNaN(date.getTime())
+    ? 'Select date'
+    : date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+};
 
 const pageMeta = {
   '/student/dashboard': {
@@ -88,13 +106,40 @@ const pageMeta = {
     title: 'Contact Support',
     subtitle: 'Get technical help for the admin workspace.',
   },
+  '/admin/profile': {
+    title: 'Profile',
+    subtitle: 'Review administrator account details and active sessions.',
+  },
 };
 
 const Header = ({ toggleSidebar, isMobile }) => {
   const location = useLocation();
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user, role, logout } = useAuth();
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(() => {
+    if (typeof window === 'undefined') {
+      return '2025-05-20';
+    }
+
+    return window.localStorage.getItem(DASHBOARD_DATE_STORAGE_KEY) || '2025-05-20';
+  });
+  const calendarRef = useRef(null);
+  const profileRef = useRef(null);
   const isHodArea = location.pathname.startsWith('/hod');
   const isAdminArea = location.pathname.startsWith('/admin');
+  const notificationRoute = isAdminArea
+    ? '/admin/notifications'
+    : isHodArea
+      ? '/hod/notifications'
+      : '/student/notifications';
+  const profileRoute = isAdminArea
+    ? '/admin/profile'
+    : isHodArea
+      ? '/hod/profile'
+      : '/student/profile';
+  const settingsRoute = isAdminArea ? '/admin/settings' : profileRoute;
   const currentPage =
     pageMeta[location.pathname] ||
     (location.pathname.startsWith('/hod/assigned/') ? pageMeta['/hod/assigned'] : null) ||
@@ -102,6 +147,45 @@ const Header = ({ toggleSidebar, isMobile }) => {
     pageMeta[isAdminArea ? '/admin/dashboard' : isHodArea ? '/hod/dashboard' : '/student/dashboard'];
   const firstName = user?.name?.split(' ')[0] || (isAdminArea ? 'Admin' : isHodArea ? 'HOD' : 'Student');
   const avatarLetter = user?.name?.charAt(0)?.toUpperCase() || (isAdminArea ? 'A' : isHodArea ? 'H' : 'S');
+  const displayDate = useMemo(() => formatDisplayDate(selectedDate), [selectedDate]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setIsCalendarOpen(false);
+      }
+
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setIsCalendarOpen(false);
+    setIsProfileOpen(false);
+  }, [location.pathname]);
+
+  const applySelectedDate = (value) => {
+    setSelectedDate(value);
+
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(DASHBOARD_DATE_STORAGE_KEY, value);
+      window.dispatchEvent(
+        new CustomEvent('grievance-dashboard-date-change', {
+          detail: { value },
+        }),
+      );
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <header className="header">
@@ -145,14 +229,51 @@ const Header = ({ toggleSidebar, isMobile }) => {
 
         <div className="header-actions">
           {!isMobile && (
-            <button className="icon-btn">
-              <i className="fa-regular fa-calendar"></i>
-            </button>
+            <div className="header-popover-wrap" ref={calendarRef}>
+              <button
+                className={`icon-btn ${isCalendarOpen ? 'active' : ''}`}
+                onClick={() => setIsCalendarOpen((current) => !current)}
+                aria-label="Open calendar"
+              >
+                <i className="fa-regular fa-calendar"></i>
+              </button>
+
+              {isCalendarOpen && (
+                <div className="header-popover calendar-popover">
+                  <div className="popover-head">
+                    <strong>Calendar</strong>
+                    <span>{displayDate}</span>
+                  </div>
+                  <input
+                    className="calendar-input"
+                    type="date"
+                    value={selectedDate}
+                    onChange={(event) => applySelectedDate(event.target.value)}
+                  />
+                  <div className="calendar-shortcuts">
+                    <button type="button" onClick={() => applySelectedDate('2025-05-20')}>
+                      Today
+                    </button>
+                    <button type="button" onClick={() => applySelectedDate('2025-05-19')}>
+                      Yesterday
+                    </button>
+                    <button type="button" onClick={() => applySelectedDate('2025-05-14')}>
+                      This Week
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
 
           {!isMobile && <div className="vertical-line"></div>}
 
-          <button className="icon-btn notification-btn">
+          <button
+            className="icon-btn notification-btn"
+            onClick={() => navigate(notificationRoute)}
+            aria-label="Open notifications"
+            title="Notifications"
+          >
             <i className="fa-regular fa-bell"></i>
             <span className="notif-badge">3</span>
           </button>
@@ -160,15 +281,44 @@ const Header = ({ toggleSidebar, isMobile }) => {
 
         {!isMobile && <div className="header-divider"></div>}
 
-        <div className="user-profile">
-          <div className="avatar">{avatarLetter}</div>
-          {!isMobile && (
-            <div className="user-info">
-              <h4>{user?.name || 'Student User'}</h4>
-              <p>{user?.department || (isAdminArea ? 'Admin Dashboard' : isHodArea ? 'HOD Dashboard' : 'Student Dashboard')}</p>
+        <div className="header-popover-wrap" ref={profileRef}>
+          <button
+            className={`user-profile ${isProfileOpen ? 'active' : ''}`}
+            onClick={() => setIsProfileOpen((current) => !current)}
+            aria-label="Open profile menu"
+          >
+            <div className="avatar">{avatarLetter}</div>
+            {!isMobile && (
+              <div className="user-info">
+                <h4>{user?.name || 'Student User'}</h4>
+                <p>{user?.department || (isAdminArea ? 'Admin Dashboard' : isHodArea ? 'HOD Dashboard' : 'Student Dashboard')}</p>
+              </div>
+            )}
+            <i className="fa-solid fa-chevron-down dropdown-icon"></i>
+          </button>
+
+          {isProfileOpen && (
+            <div className="header-popover profile-popover">
+              <div className="popover-head">
+                <strong>{user?.name || 'User'}</strong>
+                <span>{role?.toUpperCase() || 'ACCOUNT'}</span>
+              </div>
+              <div className="profile-popover-actions">
+                <button type="button" onClick={() => navigate(profileRoute)}>
+                  <i className="fa-regular fa-user"></i>
+                  <span>View Profile</span>
+                </button>
+                <button type="button" onClick={() => navigate(settingsRoute)}>
+                  <i className="fa-solid fa-gear"></i>
+                  <span>Settings</span>
+                </button>
+                <button type="button" className="danger" onClick={handleLogout}>
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
             </div>
           )}
-          <i className="fa-solid fa-chevron-down dropdown-icon"></i>
         </div>
       </div>
     </header>

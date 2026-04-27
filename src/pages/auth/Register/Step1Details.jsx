@@ -83,7 +83,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
       </div>
 
       <form className="w-full space-y-2" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
             <label htmlFor="registration-number" className={labelClasses}>Reg No</label>
             <div className="relative">
@@ -118,7 +118,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
             <label htmlFor="register-email" className={labelClasses}>Email</label>
             <div className="relative">
@@ -155,7 +155,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
             <label htmlFor="register-password" className={labelClasses}>Password</label>
             <div className="relative">

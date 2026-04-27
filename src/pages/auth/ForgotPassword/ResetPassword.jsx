@@ -81,66 +81,57 @@ const ResetPassword = ({
 
   return (
     <>
-      <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
-        <FaLock className="h-10 w-10" />
+      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
+        <FaLock className="h-6 w-6" />
       </div>
 
-      <div className="mb-6 text-center">
-        <h2 className="text-base font-semibold text-[#0F172A]">Forgot Password</h2>
+      <div className="mb-4 text-center">
+        <h2 className="text-xl font-bold tracking-tight text-[#0F172A]">New Password</h2>
+        <p className="mt-0.5 text-xs text-[#64748B]">Create a strong new password</p>
       </div>
 
       <StepIndicator />
 
-      <div className="mb-6 text-center">
-        <h3 className="text-lg font-bold text-[#0F172A]">Create New Password</h3>
-        <p className="mt-1 text-sm text-[#64748B]">Enter your new password below.</p>
-      </div>
-
       {error ? (
-        <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-[#EF4444]">
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] text-[#EF4444]">
           {error}
         </div>
       ) : null}
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
+      <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="new-password" className={labelClasses}>
+          <label htmlFor="new-password" className="mb-1 block text-xs font-medium text-[#0F172A]">
             New Password
           </label>
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#94A3B8]">
-              <FaLock className="h-5 w-5" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#94A3B8]">
+              <FaLock className="h-4 w-4" />
             </div>
             <input
               id="new-password"
               name="password"
               type={showPassword ? 'text' : 'password'}
-              placeholder="Enter new password"
-              className={`${inputClasses} pr-12`}
+              placeholder="Min 8 characters"
+              className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white px-3 pl-10 pr-10 text-xs text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100"
               value={passwords.password}
               onChange={handleChange}
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 flex items-center px-4 text-[#94A3B8] transition hover:text-[#2563EB]"
+              className="absolute inset-y-0 right-0 flex items-center px-3 text-[#94A3B8] transition hover:text-[#2563EB]"
               onClick={() => setShowPassword((current) => !current)}
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? (
-                <FaEye className="h-5 w-5" />
-              ) : (
-                <FaEyeSlash className="h-5 w-5" />
-              )}
+              {showPassword ? <FaEye className="h-4 w-4" /> : <FaEyeSlash className="h-4 w-4" />}
             </button>
           </div>
 
-          <ul className="mt-3 space-y-1.5">
+          <ul className="mt-2 space-y-1">
             {requirements.map((req) => (
-              <li key={req.label} className="flex items-center gap-2 text-sm text-[#64748B]">
+              <li key={req.label} className="flex items-center gap-2 text-[10px] text-[#64748B]">
                 {req.met ? (
-                  <FaCheckCircle className="h-4 w-4 shrink-0 text-[#10B981]" />
+                  <FaCheckCircle className="h-3 w-3 shrink-0 text-[#10B981]" />
                 ) : (
-                  <FaCircle className="h-2 w-2 shrink-0 text-[#CBD5E1]" />
+                  <FaCircle className="h-1.5 w-1.5 shrink-0 text-[#CBD5E1]" />
                 )}
                 <span className={req.met ? 'text-[#0F172A]' : ''}>{req.label}</span>
               </li>
@@ -149,44 +140,40 @@ const ResetPassword = ({
         </div>
 
         <div>
-          <label htmlFor="confirm-password" className={labelClasses}>
-            Re-enter New Password
+          <label htmlFor="confirm-password" className="mb-1 block text-xs font-medium text-[#0F172A]">
+            Confirm Password
           </label>
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#94A3B8]">
-              <FaLock className="h-5 w-5" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#94A3B8]">
+              <FaLock className="h-4 w-4" />
             </div>
             <input
               id="confirm-password"
               name="confirmPassword"
               type={showConfirm ? 'text' : 'password'}
-              placeholder="Re-enter new password"
-              className={`${inputClasses} pr-12`}
+              placeholder="Re-enter password"
+              className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white px-3 pl-10 pr-10 text-xs text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100"
               value={passwords.confirmPassword}
               onChange={handleChange}
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 flex items-center px-4 text-[#94A3B8] transition hover:text-[#2563EB]"
+              className="absolute inset-y-0 right-0 flex items-center px-3 text-[#94A3B8] transition hover:text-[#2563EB]"
               onClick={() => setShowConfirm((current) => !current)}
-              aria-label={showConfirm ? 'Hide password' : 'Show password'}
             >
-              {showConfirm ? (
-                <FaEye className="h-5 w-5" />
-              ) : (
-                <FaEyeSlash className="h-5 w-5" />
-              )}
+              {showConfirm ? <FaEye className="h-4 w-4" /> : <FaEyeSlash className="h-4 w-4" />}
             </button>
           </div>
         </div>
 
-        <button type="submit" className={primaryButtonClasses}>
-          Continue
-        </button>
-
-        <button type="button" className={outlineButtonClasses} onClick={onBack}>
-          Go Back
-        </button>
+        <div className="grid grid-cols-2 gap-3 pt-1">
+          <button type="button" className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#475569] transition hover:bg-gray-50" onClick={onBack}>
+            Back
+          </button>
+          <button type="submit" className="h-10 w-full rounded-lg bg-[#2563EB] text-xs font-semibold text-white shadow-sm transition hover:bg-[#1D4ED8]">
+            Update
+          </button>
+        </div>
       </form>
     </>
   )
