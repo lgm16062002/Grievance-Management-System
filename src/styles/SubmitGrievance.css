@@ -1,0 +1,249 @@
+ 
+ .sg-card {
+   /* width: min(980px, 100%); */
+   margin: 20px;
+   background: #ffffff;
+   border: 1px solid #eef2f7;
+   border-radius: 14px;
+   box-shadow: 0 10px 32px rgba(16, 24, 40, 0.06);
+   overflow: hidden;
+ }
+ 
+ .sg-header {
+   padding: 22px 24px 10px;
+ }
+ 
+ .sg-title {
+   margin: 0;
+   font-size: 18px;
+   font-weight: 700;
+   color: #0f172a;
+ }
+ 
+ .sg-subtitle {
+   margin: 6px 0 0;
+   font-size: 13px;
+   color: #64748b;
+ }
+ 
+ .sg-form {
+   padding: 8px 24px 18px;
+ }
+
+ .sg-selectWrap {
+   position: relative;
+ }
+
+ .sg-leadingIcon {
+   position: absolute;
+   left: 12px;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 28px;
+   height: 28px;
+   border-radius: 8px;
+   display: grid;
+   place-items: center;
+   background: #f3f6ff;
+   color: #2563eb;
+   pointer-events: none;
+ }
+
+ .sg-controlWithIcon {
+   padding-left: 52px;
+ }
+ 
+ .sg-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 16px;
+ }
+ 
+ .sg-field {
+   margin-top: 14px;
+ }
+ 
+ .sg-label {
+   display: inline-block;
+   font-size: 12px;
+   font-weight: 600;
+   color: #334155;
+   margin-bottom: 8px;
+ }
+ 
+ .sg-required {
+   color: #ef4444;
+ }
+ 
+ .sg-control {
+   width: 100%;
+   height: 44px;
+   border-radius: 10px;
+   border: 1px solid #e5eaf3;
+   background: #ffffff;
+   padding: 10px 12px;
+   font-size: 13px;
+   color: #0f172a;
+   outline: none;
+   transition: box-shadow 120ms ease, border-color 120ms ease;
+ }
+ 
+ select.sg-control {
+   padding-right: 36px;
+ }
+ 
+ .sg-control::placeholder {
+   color: #94a3b8;
+ }
+ 
+ .sg-control:focus {
+   border-color: #bfd3ff;
+   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+ }
+ 
+ .sg-textareaWrap {
+   position: relative;
+ }
+ 
+ .sg-textarea {
+   height: auto;
+   padding: 12px;
+   resize: vertical;
+ }
+ 
+ .sg-counter {
+   position: absolute;
+   right: 10px;
+   bottom: 10px;
+   font-size: 12px;
+   color: #94a3b8;
+   pointer-events: none;
+ }
+ 
+ .sg-dropzone {
+   margin-top: 6px;
+   border: 1px dashed #d6deea;
+   border-radius: 12px;
+   background: #fbfdff;
+   padding: 18px;
+ }
+ 
+ .sg-dropzoneInner {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 10px;
+   align-items: center;
+   justify-items: center;
+   text-align: center;
+ }
+ 
+ .sg-cloud {
+   width: 48px;
+   height: 48px;
+   border-radius: 999px;
+   display: grid;
+   place-items: center;
+   background: #f3f6ff;
+   color: #3b82f6;
+ }
+
+ .sg-dropzoneText {
+   max-width: 520px;
+ }
+ 
+ .sg-dropzoneTitle {
+   font-size: 13px;
+   font-weight: 600;
+   color: #334155;
+   margin-bottom: 4px;
+ }
+ 
+ .sg-browse {
+   color: #2563eb;
+   cursor: pointer;
+   text-decoration: none;
+ }
+ 
+ .sg-browse:hover {
+   text-decoration: underline;
+ }
+ 
+ .sg-dropzoneHint {
+   font-size: 12px;
+   color: #64748b;
+ }
+ 
+ .sg-fileInput {
+   display: none;
+ }
+ 
+ .sg-footer {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 14px;
+   padding: 16px 24px;
+   margin: 18px -24px 0;
+   border-top: 1px solid #eef2f7;
+   background: #ffffff;
+ }
+ 
+ .sg-btn {
+   height: 40px;
+   border-radius: 10px;
+   padding: 0 16px;
+   font-size: 13px;
+   font-weight: 700;
+   border: 1px solid transparent;
+   cursor: pointer;
+ }
+ 
+ .sg-btnSecondary {
+   background: #ffffff;
+   border-color: #e5eaf3;
+   color: #0f172a;
+ }
+ 
+ .sg-btnSecondary:hover {
+   background: #f8fafc;
+ }
+ 
+ .sg-btnPrimary {
+   margin-left: auto;
+   background: linear-gradient(180deg, #2563eb, #1d4ed8);
+   color: #ffffff;
+   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+   display: inline-flex;
+   align-items: center;
+   gap: 10px;
+ }
+ 
+ .sg-btnPrimary:hover {
+   filter: brightness(1.03);
+ }
+ 
+ .sg-arrow {
+   font-size: 16px;
+   line-height: 1;
+ }
+ 
+ @media (max-width: 780px) {
+   .sg-card {
+     margin: 14px 0;
+     border-radius: 12px;
+   }
+ 
+   .sg-grid {
+     grid-template-columns: 1fr;
+   }
+ 
+   .sg-footer {
+     flex-direction: column;
+     align-items: stretch;
+   }
+ 
+   .sg-btnPrimary {
+     width: 100%;
+     justify-content: center;
+   }
+ }

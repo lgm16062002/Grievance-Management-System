@@ -1,0 +1,42 @@
+/* Common styles for HOD area */
+.hod-dashboard {
+  width: 100%;
+}
+
+.page-header-alt {
+  margin-bottom: 24px;
+  padding: 0 10px;
+}
+
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.card-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-head h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .hod-dashboard {
+    padding: 10px;
+  }
+}
