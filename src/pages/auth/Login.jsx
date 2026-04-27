@@ -110,36 +110,30 @@ const Login = () => {
 
     return (
       <>
-        <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
-          <img src={logoImage} alt="Grievance Management System logo" className="h-11 w-11 object-contain" />
+        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
+          <img src={logoImage} alt="Grievance Management System logo" className="h-8 w-8 object-contain" />
         </div>
 
-        <div className="mb-8 text-center">
-          <h2 className="text-[28px] font-bold tracking-[-0.02em] text-[#0F172A]">Welcome Back</h2>
-          <p className="mt-1 text-sm text-[#64748B]">Sign in to your account to continue</p>
-          <div className="mx-auto mt-3 flex items-center justify-center gap-2">
-            <div className="h-px w-8 bg-[#E2E8F0]" />
-            <div className="h-1 w-8 rounded-full bg-[#2563EB]" />
-            <div className="h-px w-8 bg-[#E2E8F0]" />
-          </div>
+        <div className="mb-4 text-center">
+          <h2 className="text-xl font-bold tracking-tight text-[#0F172A]">Welcome Back</h2>
+          <p className="mt-0.5 text-xs text-[#64748B]">Sign in to your account</p>
         </div>
 
-
-        <form className="mt-6 space-y-5" onSubmit={handleLogin}>
+        <form className="mt-4 space-y-3" onSubmit={handleLogin}>
           <div>
-            <label htmlFor="login-email" className={labelClasses}>
+            <label htmlFor="login-email" className="mb-1 block text-xs font-medium text-[#0F172A]">
               Email
             </label>
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#94A3B8]">
-                <FaEnvelope className="h-5 w-5" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#94A3B8]">
+                <FaEnvelope className="h-4 w-4" />
               </div>
               <input
                 id="login-email"
                 name="email"
                 type="email"
                 placeholder="Enter your email"
-                className={inputClasses}
+                className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white px-3 pl-10 text-xs text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100"
                 value={credentials.email}
                 onChange={handleChange}
               />
@@ -147,42 +141,37 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="login-password" className={labelClasses}>
+            <label htmlFor="login-password" className="mb-1 block text-xs font-medium text-[#0F172A]">
               Password
             </label>
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-[#94A3B8]">
-                <FaLock className="h-5 w-5" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#94A3B8]">
+                <FaLock className="h-4 w-4" />
               </div>
               <input
                 id="login-password"
                 name="password"
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Enter your password"
-                className={`${inputClasses} pr-12`}
+                placeholder="Enter password"
+                className="h-10 w-full rounded-lg border border-[#E2E8F0] bg-white px-3 pl-10 pr-10 text-xs text-[#0F172A] outline-none transition focus:border-[#2563EB] focus:ring-1 focus:ring-blue-100"
                 value={credentials.password}
                 onChange={handleChange}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-4 text-[#94A3B8] transition hover:text-[#2563EB]"
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-[#94A3B8] transition hover:text-[#2563EB]"
                 onClick={() => setShowPassword((current) => !current)}
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? (
-                  <FaEye className="h-5 w-5" />
-                ) : (
-                  <FaEyeSlash className="h-5 w-5" />
-                )}
+                {showPassword ? <FaEye className="h-4 w-4" /> : <FaEyeSlash className="h-4 w-4" />}
               </button>
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4 text-sm">
-            <label className="flex cursor-pointer items-center gap-2.5 text-[#64748B]">
+          <div className="flex items-center justify-between gap-4 text-[11px]">
+            <label className="flex cursor-pointer items-center gap-2 text-[#64748B]">
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-[#CBD5E1] text-[#2563EB] accent-[#2563EB] focus:ring-[#2563EB]"
+                className="h-3 w-3 rounded border-[#CBD5E1] accent-[#2563EB]"
                 checked={rememberMe}
                 onChange={() => setRememberMe((current) => !current)}
               />
@@ -191,40 +180,40 @@ const Login = () => {
 
             <button
               type="button"
-              className="text-sm font-medium text-[#2563EB] transition hover:text-[#1D4ED8]"
+              className="font-medium text-[#2563EB] transition hover:text-[#1D4ED8]"
               onClick={() => setView('forgot-password')}
             >
               Forgot password?
             </button>
           </div>
 
-          <button type="submit" className={primaryButtonClasses}>
+          <button type="submit" className="h-10 w-full rounded-lg bg-[#2563EB] text-xs font-semibold text-white shadow-sm transition hover:bg-[#1D4ED8]">
             Sign In
           </button>
 
-          <div className="flex items-center gap-4 py-1">
+          <div className="flex items-center gap-3 py-0.5">
             <div className="h-px flex-1 bg-[#E2E8F0]" />
-            <span className="text-sm text-[#94A3B8]">or</span>
+            <span className="text-[10px] text-[#94A3B8]">or</span>
             <div className="h-px flex-1 bg-[#E2E8F0]" />
           </div>
 
           <button
             type="button"
-            className="flex h-14 w-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-5 text-left transition hover:border-[#BFDBFE] hover:bg-[#EFF6FF]"
+            className="flex h-11 w-full items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-left transition hover:border-[#BFDBFE]"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
-                <FaHeadset className="h-5 w-5" />
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EFF6FF] text-[#2563EB]">
+                <FaHeadset className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-sm font-medium text-[#0F172A]">Need help or having trouble?</p>
-                <p className="text-sm font-medium text-[#2563EB]">Contact Helpdesk</p>
+                <p className="text-[10px] font-medium text-[#0F172A]">Need help?</p>
+                <p className="text-[10px] font-medium text-[#2563EB]">Contact Helpdesk</p>
               </div>
             </div>
-            <FaChevronRight className="h-5 w-5 text-[#94A3B8]" />
+            <FaChevronRight className="h-4 w-4 text-[#94A3B8]" />
           </button>
 
-          <p className="pt-2 text-center text-sm text-[#64748B]">
+          <p className="pt-1 text-center text-[11px] text-[#64748B]">
             Don't have an account?{' '}
             <button
               type="button"
