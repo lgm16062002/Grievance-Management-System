@@ -118,6 +118,7 @@ const Header = ({ toggleSidebar, isMobile }) => {
   const { user, role, logout } = useAuth();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(() => {
     if (typeof window === 'undefined') {
       return '2025-05-20';
@@ -127,6 +128,7 @@ const Header = ({ toggleSidebar, isMobile }) => {
   });
   const calendarRef = useRef(null);
   const profileRef = useRef(null);
+  const notificationRef = useRef(null);
   const isHodArea = location.pathname.startsWith('/hod');
   const isAdminArea = location.pathname.startsWith('/admin');
   const notificationRoute = isAdminArea
@@ -158,6 +160,10 @@ const Header = ({ toggleSidebar, isMobile }) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
       }
+
+      if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setIsNotificationsOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -167,6 +173,7 @@ const Header = ({ toggleSidebar, isMobile }) => {
   useEffect(() => {
     setIsCalendarOpen(false);
     setIsProfileOpen(false);
+    setIsNotificationsOpen(false);
   }, [location.pathname]);
 
   const applySelectedDate = (value) => {
@@ -199,10 +206,10 @@ const Header = ({ toggleSidebar, isMobile }) => {
         <div className="greeting">
           <h2>
             <span className="greeting-wave" aria-hidden="true">
-              Hi
+              Hi,
             </span>
             <span className="greeting-text">
-              {currentPage.title}, {firstName}
+              {firstName}
             </span>
           </h2>
           <p>{currentPage.subtitle}</p>
@@ -268,15 +275,69 @@ const Header = ({ toggleSidebar, isMobile }) => {
 
           {!isMobile && <div className="vertical-line"></div>}
 
-          <button
-            className="icon-btn notification-btn"
-            onClick={() => navigate(notificationRoute)}
-            aria-label="Open notifications"
-            title="Notifications"
-          >
-            <i className="fa-regular fa-bell"></i>
-            <span className="notif-badge">3</span>
-          </button>
+          <div className="header-popover-wrap" ref={notificationRef}>
+            <button
+              className={`icon-btn notification-btn ${isNotificationsOpen ? 'active' : ''}`}
+              onClick={() => setIsNotificationsOpen((current) => !current)}
+              aria-label="Open notifications"
+              title="Notifications"
+            >
+              <i className="fa-regular fa-bell"></i>
+              <span className="notif-badge">3</span>
+            </button>
+
+            {isNotificationsOpen && (
+              <div className="header-popover notification-popover" style={{ width: '280px', padding: '12px' }}>
+                <div className="popover-head" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', paddingBottom: '10px', borderBottom: '1px solid #eef2f7', marginBottom: '2px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    <strong style={{ fontSize: '0.9rem', color: '#0f172a' }}>Notifications</strong>
+                    <span style={{ fontSize: '0.75rem', color: '#64748b' }}>3 unread alerts</span>
+                  </div>
+                  <button type="button" style={{ background: 'transparent', border: 'none', color: '#2563eb', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer', padding: 0 }}>Mark all read</button>
+                </div>
+                
+                <div className="notification-list" style={{ maxHeight: '280px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '10px 8px', borderBottom: '1px solid #f1f5f9', display: 'flex', gap: '10px', cursor: 'pointer', borderRadius: '8px', transition: 'background-color 0.2s' }} onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'} onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ef4444', marginTop: '6px', flexShrink: 0 }}></div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1e293b' }}>12 grievances breached SLA</span>
+                      <span style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.4 }}>Require immediate attention in Hostel.</span>
+                      <span style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '4px', fontWeight: 600 }}>10 mins ago</span>
+                    </div>
+                  </div>
+                  <div style={{ padding: '10px 8px', borderBottom: '1px solid #f1f5f9', display: 'flex', gap: '10px', cursor: 'pointer', borderRadius: '8px', transition: 'background-color 0.2s' }} onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'} onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#f59e0b', marginTop: '6px', flexShrink: 0 }}></div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1e293b' }}>New grievance received</span>
+                      <span style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.4 }}>GRV-1250 raised by Rahul Sharma.</span>
+                      <span style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '4px', fontWeight: 600 }}>1 hour ago</span>
+                    </div>
+                  </div>
+                  <div style={{ padding: '10px 8px', display: 'flex', gap: '10px', cursor: 'pointer', borderRadius: '8px', transition: 'background-color 0.2s' }} onMouseOver={e => e.currentTarget.style.backgroundColor = '#f8fafc'} onMouseOut={e => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#2563eb', marginTop: '6px', flexShrink: 0 }}></div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1e293b' }}>Grievance escalated</span>
+                      <span style={{ fontSize: '0.7rem', color: '#64748b', lineHeight: 1.4 }}>GRV-1245 escalated to HOD.</span>
+                      <span style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '4px', fontWeight: 600 }}>Yesterday</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ paddingTop: '10px', borderTop: '1px solid #eef2f7', textAlign: 'center', marginTop: '2px' }}>
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setIsNotificationsOpen(false);
+                      navigate(notificationRoute);
+                    }}
+                    style={{ background: 'transparent', border: 'none', color: '#2563eb', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', width: '100%', padding: '6px 0' }}
+                  >
+                    View All Notifications <i className="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {!isMobile && <div className="header-divider"></div>}
@@ -291,7 +352,7 @@ const Header = ({ toggleSidebar, isMobile }) => {
             {!isMobile && (
               <div className="user-info">
                 <h4>{user?.name || 'Student User'}</h4>
-                <p>{user?.department || (isAdminArea ? 'Admin Dashboard' : isHodArea ? 'HOD Dashboard' : 'Student Dashboard')}</p>
+                <p>{user?.department?.replace('Computer Science & Engineering', 'CSE') || (isAdminArea ? 'Admin Dashboard' : isHodArea ? 'HOD Dashboard' : 'Student Dashboard')}</p>
               </div>
             )}
             <i className="fa-solid fa-chevron-down dropdown-icon"></i>

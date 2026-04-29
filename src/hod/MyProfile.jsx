@@ -7,7 +7,7 @@ const MyProfile = () => {
   const { user } = useAuth();
 
   const personalInfo = [
-    { label: 'Full Name', value: 'Officer Davis' },
+    { label: 'Full Name', value: 'Rajiv Mehta' },
     { label: 'Email Address', value: 'hod@gmail.com' },
     { label: 'Phone Number', value: '+91 98765 43210' },
     { label: 'Date of Birth', value: 'April 12, 1985' },
@@ -21,7 +21,7 @@ const MyProfile = () => {
   const sessions = [
     {
       id: 1,
-      device: 'macOS • Chrome • University Network',
+      device: 'macOS â€¢ Chrome â€¢ University Network',
       status: 'Active',
       isCurrent: true,
     }
@@ -45,7 +45,7 @@ const MyProfile = () => {
           
           <div className="profile-hero-info">
             <div className="name-row">
-              <h2>Officer Davis</h2>
+              <h2>Rajiv Mehta</h2>
               <span className="role-badge">HOD</span>
             </div>
             <p className="dept-text">Examination Department</p>

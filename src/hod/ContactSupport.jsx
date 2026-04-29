@@ -4,7 +4,7 @@ import '../styles/ContactSupport.css';
 
 const ContactSupport = () => {
   const [formData, setFormData] = useState({
-    fullName: 'Officer Davis',
+    fullName: 'Rajiv Mehta',
     email: 'hod@gmail.com',
     subject: '',
     category: '',

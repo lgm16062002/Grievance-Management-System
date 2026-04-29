@@ -6,9 +6,9 @@ const GrievanceDetail = () => {
   const navigate = useNavigate();
 
   const conversation = [
-    { sender: 'Alex Johnson', role: 'Student', initials: 'AJ', text: 'I submitted the form as requested along with the document proof. Let me know if any other detail is needed.', date: 'May 20, 2025, 10:30 AM' },
-    { sender: 'Officer Davis', role: 'You', initials: 'OD', text: 'Dear Alex, we have forwarded your script copy to the respective professor for verification. Expected resolution by tomorrow.', date: 'May 20, 2025, 11:15 AM' },
-    { sender: 'Alex Johnson', role: 'Student', initials: 'AJ', text: 'Thank you for the update.', date: 'May 20, 2025, 11:20 AM' },
+    { sender: 'Kiran Patel', role: 'Student', initials: 'KP', text: 'I submitted the form as requested along with the document proof. Let me know if any other detail is needed.', date: 'May 20, 2025, 10:30 AM' },
+    { sender: 'Rajiv Mehta', role: 'You', initials: 'RM', text: 'Dear Kiran, we have forwarded your script copy to the respective professor for verification. Expected resolution by tomorrow.', date: 'May 20, 2025, 11:15 AM' },
+    { sender: 'Kiran Patel', role: 'Student', initials: 'KP', text: 'Thank you for the update.', date: 'May 20, 2025, 11:20 AM' },
   ];
 
   return (
@@ -34,7 +34,7 @@ const GrievanceDetail = () => {
                 <div className="meta-item">
                   <i className="fa-regular fa-user"></i>
                   <div>
-                    <strong>Alex Johnson</strong>
+                    <strong>Kiran Patel</strong>
                     <span>STU-202X-001</span>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ const GrievanceDetail = () => {
             <div className="conversation-list">
               {conversation.map((msg, index) => (
                 <div key={index} className="message-row">
-                  <div className={`avatar-circle ${msg.initials === 'OD' ? 'officer' : 'student'}`}>
+                  <div className={`avatar-circle ${msg.initials === 'RM' ? 'officer' : 'student'}`}>
                     {msg.initials}
                   </div>
                   <div className="message-content">
@@ -137,7 +137,7 @@ const GrievanceDetail = () => {
                 <label>Assign To (If needed)</label>
                 <select defaultValue="">
                   <option value="" disabled>Select Officer</option>
-                  <option value="davis">Officer Davis</option>
+                  <option value="mehta">Rajiv Mehta</option>
                 </select>
               </div>
               <div className="upload-zone-mini">
@@ -157,7 +157,7 @@ const GrievanceDetail = () => {
               <div className="student-profile-head">
                 <div className="avatar-large">AJ</div>
                 <div className="profile-titles">
-                  <strong>Alex Johnson</strong>
+                  <strong>Kiran Patel</strong>
                   <span>STU-202X-001</span>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const GrievanceDetail = () => {
                 </div>
                 <div className="info-node">
                   <label>Email:</label>
-                  <span>alex.j@uni.edu</span>
+                  <span>kiran.p@uni.edu</span>
                 </div>
                 <div className="info-node text-right">
                   <label>Phone:</label>

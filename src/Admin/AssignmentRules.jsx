@@ -149,7 +149,7 @@ const AssignmentRules = () => {
           type="text"
           placeholder="Search by category, sub-category or assignee..."
         />
-        <span className="ar-key">⌘ K</span>
+        <span className="ar-key">Ctrl K</span>
       </div>
 
       <div className="ar-hero">
@@ -300,12 +300,12 @@ const AssignmentRules = () => {
                         {r.category.name}
                       </div>
                     </td>
-                    <td style={{ fontWeight: 900 }}>{r.subCategory}</td>
+                    <td style={{ fontWeight: 700 }}>{r.subCategory}</td>
                     <td>
                       <div className="ar-assignee">
                         <div className={`ar-avatar ar-tone-${r.assignedTo.tone}`}>{r.assignedTo.avatar}</div>
                         <div>
-                          <div style={{ fontWeight: 900 }}>{r.assignedTo.name}</div>
+                          <div style={{ fontWeight: 700 }}>{r.assignedTo.name}</div>
                           <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#64748b' }}>{r.assignedTo.subtitle}</div>
                         </div>
                       </div>

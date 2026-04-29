@@ -31,7 +31,7 @@ const adminNavItems = [
   { to: '/admin/categories', label: 'Category Manager', icon: 'fa-regular fa-folder-open' },
   { to: '/admin/assignment-rules', label: 'Assignment Rules', icon: 'fa-solid fa-shuffle' },
   { to: '/admin/notifications', label: 'Notifications', icon: 'fa-regular fa-bell', badge: '3' },
-  { to: '/admin/settings', label: 'Settings', icon: 'fa-solid fa-gear' },
+  { to: '/admin/help', label: 'Help & FAQ', icon: 'fa-regular fa-circle-question' },
   { to: '/admin/contact', label: 'Contact Support', icon: 'fa-solid fa-headset' },
 ];
 

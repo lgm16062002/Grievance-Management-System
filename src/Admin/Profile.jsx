@@ -7,7 +7,7 @@ const AdminProfile = () => {
   const { user } = useAuth();
 
   const personalInfo = [
-    { label: 'Full Name', value: user?.name || 'Diana Prince' },
+    { label: 'Full Name', value: user?.name || 'Ananya Sharma' },
     { label: 'Email Address', value: user?.email || 'admin@gmail.com' },
     { label: 'Phone Number', value: '+91 98765 43210' },
     { label: 'Date of Birth', value: 'March 22, 1989' },
@@ -21,7 +21,7 @@ const AdminProfile = () => {
   const sessions = [
     {
       id: 1,
-      device: 'Windows 11 · Chrome · Secure Office Network',
+      device: 'Windows 11 Â· Chrome Â· Secure Office Network',
     },
   ];
 
@@ -43,7 +43,7 @@ const AdminProfile = () => {
 
           <div className="profile-hero-info">
             <div className="name-row">
-              <h2>{user?.name || 'Diana Prince'}</h2>
+              <h2>{user?.name || 'Ananya Sharma'}</h2>
               <span className="role-badge">Admin</span>
             </div>
             <p className="dept-text">{user?.department || 'Student Affairs'}</p>

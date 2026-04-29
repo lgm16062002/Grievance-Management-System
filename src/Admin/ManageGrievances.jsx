@@ -199,7 +199,7 @@ const ManageGrievances = () => {
               type="text"
               placeholder="Search by Ticket ID, student name, category, sub-category..."
             />
-            <span className="mg-key">⌘ K</span>
+            <span className="mg-key">Ctrl K</span>
           </div>
 
           <div className="mg-filter-grid">

@@ -75,7 +75,7 @@
 .info-node span { font-size: 0.78rem; color: #1e293b; font-weight: 600; }
 .text-right { text-align: right; }
 
-.quick-actions-list { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.quick-actions-list { padding: 0px; display: flex; flex-direction: column; gap: 12px; }
 .q-action-btn { width: 100%; padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; font-size: 0.8rem; font-weight: 700; }
 .q-action-btn.blue { background: #eff6ff; color: #2563eb; }
 .q-action-btn.red { background: #fef2f2; color: #ef4444; }

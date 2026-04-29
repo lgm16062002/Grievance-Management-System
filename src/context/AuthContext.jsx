@@ -5,7 +5,7 @@ const STORAGE_KEY = 'grievance-portal-auth';
 const DEMO_USERS = {
   'student@gmail.com': {
     id: 'stu-001',
-    name: 'Bruce Wayne',
+    name: 'Arjun Kapoor',
     role: 'student',
     email: 'student@gmail.com',
     department: 'Computer Science & Engineering',
@@ -16,7 +16,7 @@ const DEMO_USERS = {
   },
   'hod@gmail.com': {
     id: 'hod-001',
-    name: 'Barry Allen',
+    name: 'Rohan Desai',
     role: 'hod',
     email: 'hod@gmail.com',
     department: 'Computer Science & Engineering',
@@ -24,7 +24,7 @@ const DEMO_USERS = {
   },
   'admin@gmail.com': {
     id: 'adm-001',
-    name: 'Diana Prince',
+    name: 'Ananya Sharma',
     role: 'admin',
     email: 'admin@gmail.com',
     department: 'Student Affairs',
@@ -57,14 +57,10 @@ const readStoredAuth = () => {
 export const getDefaultRouteForRole = (role) => ROLE_REDIRECTS[role] || '/login';
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const storedAuth = readStoredAuth();
-    if (storedAuth?.user) {
-      setUser(storedAuth.user);
-    }
-  }, []);
+    return storedAuth?.user || null;
+  });
 
   const login = (email, password) => {
     // For demo purposes, we only check the email and assume 'password' is the password

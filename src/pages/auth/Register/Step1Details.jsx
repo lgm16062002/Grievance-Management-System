@@ -109,7 +109,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
               <input
                 id="full-name"
                 name="fullName"
-                placeholder="John Doe"
+                placeholder="Rahul Sharma"
                 className={inputClasses}
                 value={values.fullName}
                 onChange={handleChange}
@@ -166,7 +166,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
                 id="register-password"
                 name="password"
                 type={showPassword ? 'text' : 'password'}
-                placeholder="••••"
+                placeholder="â€¢â€¢â€¢â€¢"
                 className={inputClasses}
                 value={values.password}
                 onChange={handleChange}
@@ -190,7 +190,7 @@ const Step1Details = ({ onSubmit, onBack }) => {
                 id="confirm-password"
                 name="confirmPassword"
                 type={showConfirmPassword ? 'text' : 'password'}
-                placeholder="••••"
+                placeholder="â€¢â€¢â€¢â€¢"
                 className={inputClasses}
                 value={values.confirmPassword}
                 onChange={handleChange}

@@ -8,7 +8,7 @@ const Profile = () => {
 
   // Mock data matching the image for visual demonstration
   const personalInfo = [
-    { label: 'Full Name', value: 'Bruce Wayne' },
+    { label: 'Full Name', value: 'Arjun Kapoor' },
     { label: 'Email Address', value: 'bruce.wayne@university.edu' },
     { label: 'Phone Number', value: '+91 98765 43210' },
     { label: 'Date of Birth', value: 'May 02, 2003' },
@@ -22,7 +22,7 @@ const Profile = () => {
   const sessions = [
     {
       id: 1,
-      device: 'Windows • Chrome • Gotham City, USA',
+      device: 'Windows â€¢ Chrome â€¢ Gotham City, USA',
       status: 'Active',
       isCurrent: true,
     }
@@ -46,7 +46,7 @@ const Profile = () => {
           
           <div className="profile-hero-info">
             <div className="name-row">
-              <h2>Bruce Wayne</h2>
+              <h2>Arjun Kapoor</h2>
               <span className="role-badge">Student</span>
             </div>
             <p className="dept-text">CSE - 3rd Year</p>

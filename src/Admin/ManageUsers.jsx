@@ -112,6 +112,20 @@ const ManageUsers = () => {
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
+  const [newUserFormData, setNewUserFormData] = useState({
+    name: '',
+    email: '',
+    role: 'Student',
+    password: '',
+  });
+
+  const handleAddUserSubmit = (e) => {
+    e.preventDefault();
+    setIsAddUserModalOpen(false);
+    setNewUserFormData({ name: '', email: '', role: 'Student', password: '' });
+  };
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return userRows.filter((u) => {
@@ -188,7 +202,7 @@ const ManageUsers = () => {
         </div>
 
         <div className="mu-actions">
-          <button type="button" className="mu-btn mu-btn-primary">
+          <button type="button" className="mu-btn mu-btn-primary" onClick={() => setIsAddUserModalOpen(true)}>
             <i className="fa-solid fa-plus" />
             Add User
           </button>
@@ -213,7 +227,7 @@ const ManageUsers = () => {
               <p className="mu-kpi-label">{kpi.label}</p>
               <div className="mu-kpi-value">{formatCount(kpi.value)}</div>
               <div className="mu-kpi-trend">
-                <span>↗</span> 12.5% <span style={{ color: '#64748b', fontWeight: 800 }}>from last 30 days</span>
+                <span>↗</span> 12.5% <span style={{ color: '#64748b', fontWeight: 700 }}>from last 30 days</span>
               </div>
             </div>
           </div>
@@ -310,18 +324,18 @@ const ManageUsers = () => {
             <tbody>
               {paged.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ textAlign: 'center', padding: '40px 16px', color: '#64748b', fontWeight: 800 }}>
+                  <td colSpan={8} style={{ textAlign: 'center', padding: '40px 16px', color: '#64748b', fontWeight: 700 }}>
                     No users found matching your filters.
                   </td>
                 </tr>
               ) : (
                 paged.map((u) => (
                   <tr key={u.id}>
-                    <td style={{ fontWeight: 900, color: '#0f172a' }}>{u.id}</td>
+                    <td style={{ fontWeight: 700, color: '#0f172a' }}>{u.id}</td>
                     <td>
                       <div className="mu-user">
                         <div className={`mu-avatar mu-avatar-${u.tone}`}>{u.avatar}</div>
-                        <span style={{ fontWeight: 900 }}>{u.name}</span>
+                        <span style={{ fontWeight: 700 }}>{u.name}</span>
                       </div>
                     </td>
                     <td style={{ color: '#475569', fontWeight: 700 }}>{u.email}</td>
@@ -336,7 +350,7 @@ const ManageUsers = () => {
                         {u.role}
                       </span>
                     </td>
-                    <td style={{ fontWeight: 800 }}>{u.department}</td>
+                    <td style={{ fontWeight: 700 }}>{u.department}</td>
                     <td>
                       <span className={`mu-pill ${u.status === 'Active' ? 'mu-pill-active' : 'mu-pill-inactive'}`}>
                         {u.status}
@@ -408,6 +422,73 @@ const ManageUsers = () => {
           </div>
         </div>
       </section>
+
+      {isAddUserModalOpen && (
+        <div className="mu-modal-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(15, 23, 42, 0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, backdropFilter: 'blur(4px)' }}>
+          <div className="mu-modal-content dashboard-card" style={{ width: '100%', maxWidth: '420px', padding: '28px', position: 'relative', margin: '16px' }}>
+            <button 
+              onClick={() => setIsAddUserModalOpen(false)} 
+              style={{ position: 'absolute', top: '24px', right: '24px', background: 'transparent', border: 'none', fontSize: '1.2rem', color: '#64748b', cursor: 'pointer' }}
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </button>
+            <h2 style={{ fontSize: '1.2rem', color: '#0f172a', marginBottom: '8px', fontWeight: 700 }}>Add New User</h2>
+            <p style={{ color: '#64748b', fontSize: '0.85rem', marginBottom: '24px' }}>Enter details to create a new user account.</p>
+            
+            <form onSubmit={handleAddUserSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#334155' }}>Name</label>
+                <input 
+                  type="text" 
+                  required
+                  value={newUserFormData.name}
+                  onChange={(e) => setNewUserFormData(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="Enter full name" 
+                  style={{ padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '0.85rem', outline: 'none' }}
+                />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#334155' }}>Email Address</label>
+                <input 
+                  type="email" 
+                  required
+                  value={newUserFormData.email}
+                  onChange={(e) => setNewUserFormData(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="Enter email address" 
+                  style={{ padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '0.85rem', outline: 'none' }}
+                />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#334155' }}>Role</label>
+                <select 
+                  value={newUserFormData.role}
+                  onChange={(e) => setNewUserFormData(prev => ({ ...prev, role: e.target.value }))}
+                  style={{ padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '0.85rem', outline: 'none', background: '#fff' }}
+                >
+                  <option value="Student">Student</option>
+                  <option value="HOD">HOD</option>
+                  <option value="Staff">Staff</option>
+                </select>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#334155' }}>Password</label>
+                <input 
+                  type="password" 
+                  required
+                  value={newUserFormData.password}
+                  onChange={(e) => setNewUserFormData(prev => ({ ...prev, password: e.target.value }))}
+                  placeholder="Enter password" 
+                  style={{ padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '0.85rem', outline: 'none' }}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '12px', marginTop: '12px', justifyContent: 'flex-end' }}>
+                <button type="button" onClick={() => setIsAddUserModalOpen(false)} style={{ padding: '10px 16px', background: 'transparent', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#475569', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer' }}>Cancel</button>
+                <button type="submit" style={{ padding: '10px 20px', background: 'linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)', border: 'none', borderRadius: '8px', color: '#fff', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', boxShadow: '0 8px 20px rgba(37, 99, 235, 0.18)' }}>Create User</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,10 +9,10 @@ const hodStats = [
 ];
 
 const pendingGrievances = [
-  { id: '#GRV-8092', student: 'Bruce Wayne', category: 'Academic', date: 'Today, 11:30 AM', status: 'Pending', icon: 'fa-solid fa-graduation-cap', tone: 'blue' },
+  { id: '#GRV-8092', student: 'Arjun Kapoor', category: 'Academic', date: 'Today, 11:30 AM', status: 'Pending', icon: 'fa-solid fa-graduation-cap', tone: 'blue' },
   { id: '#GRV-8041', student: 'Clark Kent', category: 'Hostel', date: 'Yesterday', status: 'Under Review', icon: 'fa-solid fa-building-user', tone: 'orange' },
-  { id: '#GRV-8100', student: 'Diana Prince', category: 'Finance', date: 'Oct 10, 2026', status: 'Critical', icon: 'fa-solid fa-wallet', tone: 'red' },
-  { id: '#GRV-8001', student: 'Barry Allen', category: 'Infrastructure', date: 'Oct 09, 2026', status: 'In Progress', icon: 'fa-solid fa-tools', tone: 'purple' },
+  { id: '#GRV-8100', student: 'Ananya Sharma', category: 'Finance', date: 'Oct 10, 2026', status: 'Critical', icon: 'fa-solid fa-wallet', tone: 'red' },
+  { id: '#GRV-8001', student: 'Rohan Desai', category: 'Infrastructure', date: 'Oct 09, 2026', status: 'In Progress', icon: 'fa-solid fa-tools', tone: 'purple' },
 ];
 
 const Dashboard = () => {

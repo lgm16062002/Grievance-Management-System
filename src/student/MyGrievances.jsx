@@ -260,7 +260,7 @@ const MyGrievances = () => {
                     <div className="ng-message-avatar">AJ</div>
                     <div className="ng-message-content">
                       <div className="ng-message-header">
-                        <span className="ng-message-author">Alex Johnson (You)</span>
+                        <span className="ng-message-author">Kiran Patel (You)</span>
                         <span className="ng-message-time">Oct 24, 2024, 10:05 AM</span>
                       </div>
                       <p className="ng-message-text">I submitted the form as requested along with the document proof. Let me know if any other detail is needed.</p>
@@ -273,7 +273,7 @@ const MyGrievances = () => {
                         <span className="ng-message-author">Department Officer</span>
                         <span className="ng-message-time">Oct 25, 2024, 09:30 AM</span>
                       </div>
-                      <p className="ng-message-text">Dear Alex, we have forwarded your script copy to the respective professor for verification. We will update the system as soon as we receive confirmation from them. Expected resolution by tomorrow.</p>
+                      <p className="ng-message-text">Dear Kiran, we have forwarded your script copy to the respective professor for verification. We will update the system as soon as we receive confirmation from them. Expected resolution by tomorrow.</p>
                     </div>
                   </div>
                 </div>

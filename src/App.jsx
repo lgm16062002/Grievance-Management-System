@@ -9,7 +9,7 @@ import ManageGrievances from './admin/ManageGrievances.jsx';
 import ManageUsers from './admin/ManageUsers.jsx';
 import AdminNotifications from './admin/Notifications.jsx';
 import AdminProfile from './admin/Profile.jsx';
-import AdminSettings from './admin/Settings.jsx';
+import AdminHelpFAQ from './admin/HelpFAQ.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import MainLayout from './components/layouts/mainlayout';
 import { useAuth } from './context/AuthContext.jsx';
@@ -81,7 +81,7 @@ const App = () => {
             <Route path="/admin/categories" element={<CategoryManager />} />
             <Route path="/admin/assignment-rules" element={<AssignmentRules />} />
             <Route path="/admin/notifications" element={<AdminNotifications />} />
-            <Route path="/admin/settings" element={<AdminSettings />} />
+            <Route path="/admin/help" element={<AdminHelpFAQ />} />
             <Route path="/admin/contact" element={<AdminContactSupport />} />
             <Route path="/admin/grievances/:id" element={<AdminGrievanceDetail />} />
             <Route path="/admin/profile" element={<AdminProfile />} />

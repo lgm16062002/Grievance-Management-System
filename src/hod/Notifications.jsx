@@ -31,7 +31,7 @@ const Notifications = () => {
       id: 3,
       type: 'reply',
       title: 'New reply from student',
-      desc: 'Alex Johnson replied on #GRV-8092.',
+      desc: 'Kiran Patel replied on #GRV-8092.',
       time: '09:30 AM',
       date: 'May 20, 2025',
       unread: true,

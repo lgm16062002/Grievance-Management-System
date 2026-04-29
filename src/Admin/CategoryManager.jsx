@@ -155,7 +155,7 @@ const CategoryManager = () => {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by category or sub-category..."
         />
-        <span className="cm-key">⌘ K</span>
+        <span className="cm-key">Ctrl K</span>
       </div>
 
       <div className="cm-hero">
@@ -226,7 +226,7 @@ const CategoryManager = () => {
                       </span>
                     </td>
                     <td style={{ color: '#475569', fontWeight: 700 }}>{cat.description}</td>
-                    <td style={{ fontWeight: 900, color: '#0f172a' }}>{cat.subCategories.length}</td>
+                    <td style={{ fontWeight: 700, color: '#0f172a' }}>{cat.subCategories.length}</td>
                     <td>
                       <span className={`cm-pill ${cat.status === 'Active' ? 'cm-pill-active' : 'cm-pill-inactive'}`}>
                         {cat.status}
@@ -310,7 +310,7 @@ const CategoryManager = () => {
                   <tbody>
                     {selectedCategory.subCategories.map((sub) => (
                       <tr key={sub.id}>
-                        <td style={{ fontWeight: 900 }}>{sub.name}</td>
+                        <td style={{ fontWeight: 700 }}>{sub.name}</td>
                         <td style={{ color: '#475569', fontWeight: 700 }}>{sub.description}</td>
                         <td>
                           <span className={`cm-pill ${sub.status === 'Active' ? 'cm-pill-active' : 'cm-pill-inactive'}`}>

@@ -16,7 +16,7 @@
   margin: 0;
   font-size: 1.7rem;
   line-height: 1.2;
-  font-weight: 800;
+  font-weight: 700;
   color: #0f172a;
 }
 
@@ -44,7 +44,7 @@
   align-items: center;
   gap: 10px;
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .mu-btn-primary {
@@ -94,14 +94,14 @@
 .mu-kpi-label {
   margin: 0;
   font-size: 0.84rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #64748b;
 }
 
 .mu-kpi-value {
   margin: 6px 0 0;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #0f172a;
   line-height: 1;
 }
@@ -109,7 +109,7 @@
 .mu-kpi-trend {
   margin-top: 8px;
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #64748b;
 }
 
@@ -166,7 +166,7 @@
 
 .mu-filter label {
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #64748b;
 }
 
@@ -211,7 +211,7 @@
   border: 1px solid #dfe8f3;
   background: #ffffff;
   color: #0f172a;
-  font-weight: 900;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +224,7 @@
   border: none;
   background: transparent;
   color: #2563eb;
-  font-weight: 900;
+  font-weight: 700;
   height: 42px;
   display: inline-flex;
   align-items: center;
@@ -247,7 +247,7 @@
   background: transparent;
   padding: 14px 6px;
   font-size: 0.9rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #64748b;
   border-bottom: 2px solid transparent;
   white-space: nowrap;
@@ -273,7 +273,7 @@
   text-align: left;
   padding: 14px 16px;
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #64748b;
   background: #fbfcfe;
   border-bottom: 1px solid #eef2f7;
@@ -301,7 +301,7 @@
   align-items: center;
   justify-content: center;
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: 700;
   color: #0f172a;
   flex-shrink: 0;
 }
@@ -334,7 +334,7 @@
   padding: 0 10px;
   border-radius: 999px;
   font-size: 0.76rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .mu-pill-student {
@@ -425,7 +425,7 @@
   gap: 10px;
   color: #64748b;
   font-size: 0.86rem;
-  font-weight: 900;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -435,7 +435,7 @@
   border: 1px solid #e2e8f0;
   background: #ffffff;
   padding: 0 10px;
-  font-weight: 900;
+  font-weight: 700;
   color: #0f172a;
 }
 

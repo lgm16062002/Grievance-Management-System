@@ -3,45 +3,52 @@
    ============================================ */
 
 .header {
-  height: 72px;
-  background-color: #ffffff;
+  min-height: 82px;
+  background-color: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid #e8ecf0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  gap: 20px;
+  padding: 14px 28px;
   position: sticky;
   top: 0;
   z-index: 90;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 14px 35px -34px rgba(15, 23, 42, 0.45);
 }
 
 /* ---- LEFT SECTION ---- */
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   flex: 1;
   min-width: 0;
 }
 
 .menu-toggle {
-  font-size: 1.3rem;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
   color: #475569;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
+  font-size: 1.25rem;
   flex-shrink: 0;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .menu-toggle:hover {
   background-color: #f1f5f9;
+  border-color: #d5dfeb;
   color: #1e293b;
+  box-shadow: 0 10px 26px -24px rgba(37, 99, 235, 0.6);
 }
 
 .header-divider {
@@ -56,10 +63,11 @@
 }
 
 .greeting h2 {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: clamp(1.05rem, 0.65vw + 0.95rem, 1.45rem);
+  font-weight: 800;
   color: #1e293b;
-  margin-bottom: 2px;
+  line-height: 1.2;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -78,34 +86,41 @@
 }
 
 .greeting p {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: #64748b;
-  font-weight: 400;
-  white-space: nowrap;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: normal;
+  max-width: 44rem;
 }
 
 /* ---- RIGHT SECTION ---- */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-shrink: 0;
+  min-width: 0;
+  margin-left: auto;
 }
 
 /* Search Bar (desktop) */
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #f8fafc;
+  width: min(100%, 360px);
+  min-width: 240px;
+  height: 54px;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 8px 14px;
-  width: 300px;
-  transition: border-color 0.2s;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 0 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .search-bar:focus-within {
   border-color: #2563eb;
+  box-shadow: 0 16px 38px -30px rgba(37, 99, 235, 0.45);
 }
 
 .search-icon {
@@ -119,7 +134,7 @@
   background: transparent;
   outline: none;
   padding: 0 10px;
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   width: 100%;
   color: #334155;
   font-family: inherit;
@@ -135,11 +150,11 @@
   gap: 2px;
   background-color: #f1f5f9;
   border: 1px solid #e2e8f0;
-  padding: 2px 6px;
-  border-radius: 5px;
+  padding: 4px 7px;
+  border-radius: 8px;
   color: #64748b;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -160,12 +175,14 @@
 .icon-btn {
   width: 38px;
   height: 38px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #475569;
   font-size: 1.15rem;
-  border-radius: 10px;
   transition: all 0.2s;
   position: relative;
   flex-shrink: 0;
@@ -174,6 +191,7 @@
 
 .icon-btn:hover {
   background-color: #f1f5f9;
+  border-color: #d5dfeb;
   color: #1e293b;
 }
 
@@ -186,8 +204,6 @@
 /* Notification Badge */
 .notification-btn {
   position: relative;
-  border: none;
-  background: transparent;
 }
 
 .notif-badge {
@@ -213,16 +229,17 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 10px;
-  transition: background-color 0.2s;
+  padding: 6px 10px;
+  border-radius: 14px;
+  transition: background-color 0.2s, border-color 0.2s;
   flex-shrink: 0;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
 }
 
 .user-profile:hover {
   background-color: #f8fafc;
+  border-color: #e2e8f0;
 }
 
 .avatar {
@@ -239,18 +256,26 @@
   flex-shrink: 0;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
 .user-info h4 {
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
   color: #1e293b;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   white-space: nowrap;
+  text-align: left;
 }
 
 .user-info p {
-  font-size: 0.73rem;
+  font-size: 0.76rem;
   color: #64748b;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -364,13 +389,28 @@
   border-color: #fecaca;
 }
 
+@media (max-width: 1180px) {
+  .header {
+    padding: 14px 20px;
+  }
+
+  .search-bar {
+    width: 280px;
+    min-width: 180px;
+  }
+
+  .greeting p {
+    max-width: 30rem;
+  }
+}
+
 /* ============================================
-   MOBILE STYLES (≤ 768px)
+   MOBILE STYLES (<= 768px)
    ============================================ */
 @media (max-width: 768px) {
   .header {
-    height: 64px;
-    padding: 0 16px;
+    min-height: 72px;
+    padding: 12px 14px;
     gap: 0;
     border-bottom: 1px solid #e8ecf0;
   }
@@ -381,38 +421,37 @@
   }
 
   .menu-toggle {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
     font-size: 1.15rem;
   }
 
   .header-divider {
-    height: 30px;
+    display: none;
   }
 
   .greeting h2 {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     margin-bottom: 1px;
     gap: 4px;
   }
 
   .greeting p {
-    font-size: 0.75rem;
-    color: #64748b;
+    display: none;
   }
 
   .header-right {
     gap: 8px;
   }
 
-  /* Search mobile icon button */
   .search-mobile-btn {
     border: 1px solid #e2e8f0;
     background-color: #f8fafc;
     border-radius: 10px;
+    width: 40px;
+    height: 40px;
   }
 
-  /* Notification on mobile */
   .notification-btn {
     width: 36px;
     height: 36px;
@@ -426,7 +465,6 @@
     font-size: 0.58rem;
   }
 
-  /* Avatar on mobile — no user info text */
   .avatar {
     width: 36px;
     height: 36px;
@@ -434,8 +472,9 @@
   }
 
   .user-profile {
-    padding: 2px 4px;
+    padding: 2px;
     gap: 4px;
+    border: none;
   }
 
   .dropdown-icon {
@@ -451,10 +490,11 @@
 /* Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
   .search-bar {
-    width: 220px;
+    width: 240px;
+    min-width: 180px;
   }
 
   .header {
-    padding: 0 20px;
+    padding: 14px 20px;
   }
 }

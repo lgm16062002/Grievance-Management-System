@@ -6,6 +6,7 @@
   display: flex;
   min-height: 100vh;
   width: 100%;
+  background: #edf3f9;
 }
 
 .main-wrapper {
@@ -14,6 +15,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-width: 0;
   transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -24,8 +26,10 @@
 
 .main-content {
   flex-grow: 1;
-  padding: 10px 10px;
-  background-color: #f1f4f9;
+  padding: 14px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 28%),
+    linear-gradient(180deg, #f5f8fc 0%, #edf3f9 100%);
 }
 
 /* ============================================
@@ -38,7 +42,7 @@
   }
 
   .main-content {
-    padding: 10px 10px;
+    padding: 10px;
   }
 
   /* Dark translucent overlay behind mobile sidebar */
@@ -67,6 +71,6 @@
   }
 
   .main-content {
-    padding: 10px 10px;
+    padding: 12px;
   }
 }

@@ -11,8 +11,8 @@ const assignedStats = [
 ];
 
 const grievances = [
-  { id: '#GRV-8092', student: 'Alex Johnson', stuId: 'STU-202X-001', category: 'Academic Grading', priority: 'High', status: 'Under Review', assignedOn: 'May 20, 2025', assignedTime: '10:30 AM', dueBy: 'May 23, 2025', dueTime: '11:59 PM' },
-  { id: '#GRV-8105', student: 'Sarah Smith', stuId: 'STU-202X-045', category: 'Attendance', priority: 'Medium', status: 'New Request', assignedOn: 'May 20, 2025', assignedTime: '09:15 AM', dueBy: 'May 23, 2025', dueTime: '11:59 PM' },
+  { id: '#GRV-8092', student: 'Kiran Patel', stuId: 'STU-202X-001', category: 'Academic Grading', priority: 'High', status: 'Under Review', assignedOn: 'May 20, 2025', assignedTime: '10:30 AM', dueBy: 'May 23, 2025', dueTime: '11:59 PM' },
+  { id: '#GRV-8105', student: 'Priya Sharma', stuId: 'STU-202X-045', category: 'Attendance', priority: 'Medium', status: 'New Request', assignedOn: 'May 20, 2025', assignedTime: '09:15 AM', dueBy: 'May 23, 2025', dueTime: '11:59 PM' },
   { id: '#GRV-7990', student: 'Michael Chang', stuId: 'STU-202X-112', category: 'Exam Schedule', priority: 'High', status: 'Pending Info', assignedOn: 'May 19, 2025', assignedTime: '04:45 PM', dueBy: 'May 22, 2025', dueTime: '11:59 PM' },
   { id: '#GRV-7981', student: 'Priya Patel', stuId: 'STU-202X-077', category: 'Hostel Maintenance', priority: 'Low', status: 'In Progress', assignedOn: 'May 19, 2025', assignedTime: '11:20 AM', dueBy: 'May 24, 2025', dueTime: '11:59 PM' },
   { id: '#GRV-7966', student: 'David Lee', stuId: 'STU-202X-033', category: 'Fee Refund', priority: 'Medium', status: 'Under Review', assignedOn: 'May 18, 2025', assignedTime: '02:10 PM', dueBy: 'May 21, 2025', dueTime: '11:59 PM' },

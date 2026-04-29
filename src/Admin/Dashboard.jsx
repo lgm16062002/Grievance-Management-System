@@ -194,17 +194,11 @@ const formatLongDate = (value) => {
   });
 };
 
-const getPoints = (values) =>
-  values
-    .map((value, index) => {
-      const x =
-        chartPaddingX + (index * (chartWidth - chartPaddingX * 2)) / (values.length - 1);
-      const y =
-        chartPaddingTop +
-        ((maxValue - value) / maxValue) * (chartHeight - chartPaddingTop - chartPaddingBottom);
-      return `${x},${y}`;
-    })
-    .join(' ');
+const getBarPath = (x, y, w, h, radius) => {
+  if (h <= 0) return '';
+  const r = Math.min(radius, h / 2);
+  return `M ${x},${y + h} L ${x},${y + r} A ${r},${r} 0 0,1 ${x + r},${y} L ${x + w - r},${y} A ${r},${r} 0 0,1 ${x + w},${y + r} L ${x + w},${y + h} Z`;
+};
 
 const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -214,6 +208,7 @@ const Dashboard = () => {
 
     return window.localStorage.getItem(DASHBOARD_DATE_STORAGE_KEY) || '2025-05-20';
   });
+  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, value: 0, label: '', seriesName: '', color: '' });
   const longDate = useMemo(() => formatLongDate(selectedDate), [selectedDate]);
 
   useEffect(() => {
@@ -299,40 +294,96 @@ const Dashboard = () => {
                 ))}
               </div>
 
-              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="admin-line-chart" aria-hidden="true">
-                {chartSeries.map((series) => (
-                  <g key={series.name}>
-                    <polyline
-                      fill="none"
-                      stroke={series.color}
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      points={getPoints(series.values)}
-                    />
-                    {series.values.map((value, index) => {
-                      const x =
-                        chartPaddingX +
-                        (index * (chartWidth - chartPaddingX * 2)) / (series.values.length - 1);
-                      const y =
-                        chartPaddingTop +
-                        ((maxValue - value) / maxValue) *
-                          (chartHeight - chartPaddingTop - chartPaddingBottom);
+              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="admin-line-chart" aria-hidden="true" style={{ overflow: 'visible' }}>
+                <defs>
+                  {chartSeries.map((series) => (
+                    <linearGradient id={`bar-grad-${series.name.replace(/\s+/g, '')}`} x1="0" x2="0" y1="0" y2="1" key={`def-${series.name}`}>
+                      <stop offset="0%" stopColor={series.color} stopOpacity="1" />
+                      <stop offset="100%" stopColor={series.color} stopOpacity="0.6" />
+                    </linearGradient>
+                  ))}
+                </defs>
+                {chartSeries.map((series, sIndex) => {
+                  const barWidth = 10;
+                  const barGap = 3;
+                  const groupGap = (chartWidth - chartPaddingX * 2) / (chartLabels.length - 1);
+                  const numSeries = chartSeries.length;
+                  const offset = (sIndex - (numSeries - 1) / 2) * (barWidth + barGap);
 
-                      return (
-                        <circle
-                          key={`${series.name}-${chartLabels[index]}`}
-                          cx={x}
-                          cy={y}
-                          r="4.5"
-                          fill={series.color}
-                          stroke="#ffffff"
-                          strokeWidth="2"
-                        />
-                      );
-                    })}
+                  return (
+                    <g key={series.name} className="chart-series-group">
+                      {series.values.map((value, index) => {
+                        const centerX = chartPaddingX + index * groupGap;
+                        const x = centerX + offset - barWidth / 2;
+                        const barHeight = (value / maxValue) * (chartHeight - chartPaddingTop - chartPaddingBottom);
+                        const y = chartHeight - chartPaddingBottom - barHeight;
+
+                        return (
+                          <path
+                            key={`${series.name}-${chartLabels[index]}`}
+                            d={getBarPath(x, y, barWidth, barHeight, 4)}
+                            fill={`url(#bar-grad-${series.name.replace(/\s+/g, '')})`}
+                            style={{ transition: 'all 0.2s ease', cursor: 'pointer' }}
+                            onMouseEnter={(e) => { 
+                              e.target.setAttribute('opacity', '0.7'); 
+                              setTooltip({
+                                visible: true,
+                                x: x + barWidth / 2,
+                                y: y,
+                                value,
+                                label: chartLabels[index],
+                                seriesName: series.name,
+                                color: series.color
+                              });
+                            }}
+                            onMouseLeave={(e) => { 
+                              e.target.setAttribute('opacity', '1'); 
+                              setTooltip(prev => ({ ...prev, visible: false }));
+                            }}
+                          />
+                        );
+                      })}
+                    </g>
+                  );
+                })}
+
+                {tooltip.visible && (
+                  <g style={{ pointerEvents: 'none' }} className="chart-tooltip">
+                    <rect
+                      x={tooltip.x - 55}
+                      y={tooltip.y - 50}
+                      width={110}
+                      height={44}
+                      fill="#0f172a"
+                      rx={6}
+                      filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"
+                    />
+                    <polygon
+                      points={`${tooltip.x - 6},${tooltip.y - 6} ${tooltip.x + 6},${tooltip.y - 6} ${tooltip.x},${tooltip.y}`}
+                      fill="#0f172a"
+                    />
+                    <text
+                      x={tooltip.x}
+                      y={tooltip.y - 32}
+                      fill="#ffffff"
+                      fontSize="12"
+                      fontWeight="700"
+                      textAnchor="middle"
+                    >
+                      {tooltip.seriesName}: {tooltip.value}
+                    </text>
+                    <text
+                      x={tooltip.x}
+                      y={tooltip.y - 16}
+                      fill="#94a3b8"
+                      fontSize="10"
+                      fontWeight="600"
+                      textAnchor="middle"
+                    >
+                      {tooltip.label}
+                    </text>
                   </g>
-                ))}
+                )}
               </svg>
 
               <div className="admin-chart-xlabels">
