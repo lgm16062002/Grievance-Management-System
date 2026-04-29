@@ -4,7 +4,7 @@ import AssignmentRules from './admin/AssignmentRules.jsx';
 import CategoryManager from './admin/CategoryManager.jsx';
 import AdminContactSupport from './admin/ContactSupport.jsx';
 import AdminDashboard from './admin/Dashboard.jsx';
-import AdminGrievanceDetail from './admin/GrievanceDetail.jsx';
+import AdminGrievanceDetail from './admin/AdminGrievanceDetail.jsx';
 import ManageGrievances from './admin/ManageGrievances.jsx';
 import ManageUsers from './admin/ManageUsers.jsx';
 import AdminNotifications from './admin/Notifications.jsx';
